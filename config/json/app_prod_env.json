@@ -1,0 +1,9 @@
+{
+  "VERSION": 0.1,
+  "URL": "localhost",
+  "HOST": "0.0.0.0",
+  "PORT": 5000,
+  "REDIS_HOST": "0.0.0.0",
+  "NAME": "CYBERS SHADOW",
+  "URL_WITH_PORT": "localhost:5000"
+}

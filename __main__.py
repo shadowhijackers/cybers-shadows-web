@@ -1,3 +1,4 @@
 import app as myApp
+from config.app_factory import MyAPP
 if __name__ == "__main__":
-    myApp.app.run(host='0.0.0.0', port=5000, debug=True)
+    myApp.app.run(host=MyAPP.HOST(), port=MyAPP.PORT(), debug=True)

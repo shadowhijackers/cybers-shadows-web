@@ -1,36 +1,35 @@
-from flask import Flask, request, url_for, render_template, jsonify
+from flask import Flask, request, url_for, render_template, jsonify, Markup
 from redis import Redis, RedisError
-import json
-import os
-import socket
 
-# Connect to Redis
 from handlers.comments.comments import Comments
-
-redis = Redis(host="0.0.0.0", db=0, socket_connect_timeout=2, socket_timeout=2)
-
+from handlers.login.login import Login
+from services.errorHandler.errorHandler import ErrorHandler
+from config.deeplinks import DeepLinks
 app = Flask(__name__, template_folder='views', static_url_path='')
 
+@app.route(DeepLinks.INDEX(), methods=['GET', 'POST'])
+def login():
 
-@app.route("/", methods=['GET', 'POST'])
-def index():
-
-    global comments
-    comments = []
-    commentsIns = Comments()
     try:
 
-        if request.method == 'POST':
-            commentor = request.form['name']
-            comment = request.form['comments']
-            newComment = commentsIns.formCommnent(commentor, comment)
-            return commentsIns.storeCommentsInRedis(newComment)
+        loginHandlerInstanse = Login()
+        return loginHandlerInstanse.handleLogin(request)
+
+    except RedisError:
+
+        ErrorHandler.handle(RedisError)
+        return  "<div style='text-align:center'><h1> !OOOPS</h1></div>"
+
+
+@app.route(DeepLinks.COMMENTS(), methods=['GET', 'POST'])
+def comments():
+    try:
+
+        commentsHandlerInstanse = Comments()
+        return commentsHandlerInstanse.handleComments(request)
 
     except RedisError, Argument:
-        error = "<i>cannot connect to Redis, counter disabled</i> {Argument}"
-        return error
 
-    return render_template('comments.html')
-
-
+        ErrorHandler.handle(RedisError)
+        return "<div style='text-align:center'><h1> !OOOPS</h1></div>"
 
