@@ -5,6 +5,7 @@ from handlers.comments.comments import Comments
 from handlers.login.login import Login
 from services.errorHandler.errorHandler import ErrorHandler
 from config.deeplinks import DeepLinks
+
 app = Flask(__name__, template_folder='views', static_url_path='')
 
 @app.route(DeepLinks.INDEX(), methods=['GET', 'POST'])

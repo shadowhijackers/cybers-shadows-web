@@ -11,7 +11,7 @@ class RedisService():
 
     def __init__(self):
 
-        print "Redis module loaded"
+        print "REDIS MODULE LOADED"
 
     def setItem(self, key, value):
 

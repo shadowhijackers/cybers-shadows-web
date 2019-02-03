@@ -1,4 +1,9 @@
+
+
+
 $(document).ready(function(){
+
+  if(isAlreadyLogined())Routing.navigate("/comments");
 
  $("#login-submit").click(function(){
 
@@ -7,7 +12,8 @@ $(document).ready(function(){
         getLoginFormDatas(),
 
         function(data,status){
-         window.location.replace("/comments");
+           Storage.setItem("userID", data.email)
+           Routing.navigate("/comments")
         }
 
     ).fail(function(err){
@@ -28,3 +34,4 @@ function getLoginFormDatas(){
  return {email: login_email, pass: login_pass}
 
 }
+

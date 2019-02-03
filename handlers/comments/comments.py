@@ -7,7 +7,7 @@ class Comments:
 
     def __init__(self):
 
-        print "COMMENTS Module loaded"
+        print "COMMENTS MODULE LOADED"
 
 
     def __storeCommentsInRedis(self,  newComment):
