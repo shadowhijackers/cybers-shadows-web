@@ -1,5 +1,5 @@
-from flask import Flask, request, url_for, render_template, jsonify, Markup
-from redis import Redis, RedisError
+from flask import Flask, request
+from redis import  RedisError
 
 from handlers.comments.comments import Comments
 from handlers.login.login import Login
