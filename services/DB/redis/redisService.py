@@ -25,7 +25,7 @@ class RedisService():
 
         try:
             data = json.dumps(value)
-            self.redis.set(key, value)
+            self.redis.set(key, data)
 
         except RedisError:
             print  RedisError

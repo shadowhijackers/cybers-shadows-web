@@ -15,7 +15,7 @@ class Login:
         if user_datas is None: return None
 
         for data in user_datas:
-            if data["email"] ==  email and data["password"] == password:
+            if data["email"] ==  email and data["pass"] == password:
                 return data
 
         return None
